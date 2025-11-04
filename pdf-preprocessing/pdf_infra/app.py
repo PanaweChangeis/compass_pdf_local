@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
-from aws_cdk import App, Environment
+import aws_cdk as cdk
+#from aws_cdk import App, Environment
 from pdf_infra.pdf_preprocess_stack import PdfPreprocessStack
 
 # user parameters
@@ -13,10 +14,10 @@ log_level = 'INFO'  #log level for the Lambdas. only INFO is implemented atm.
 
 # stacks to deploy
 # ----------------
-app = App()
+app = cdk.App()
 
 # Define environment once
-aws_env = Environment(
+aws_env = cdk.Environment(
     account=os.getenv('CDK_DEFAULT_ACCOUNT', '005444746089'),
     region=os.getenv('CDK_DEFAULT_REGION', 'us-gov-east-1')
 )
