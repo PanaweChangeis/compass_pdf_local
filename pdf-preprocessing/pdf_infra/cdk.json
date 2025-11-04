@@ -1,0 +1,24 @@
+{
+  "app": "python3 app.py",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "requirements*.txt",
+      "**/__init__.py",
+      "python/__pycache__",
+      "tests"
+    ]
+  },
+  "context": {
+    "environments": {
+      "test": {
+        "vpc_id": "vpc-0dde7027fb8c1c2d5"        
+      }
+    }
+  }
+}
+

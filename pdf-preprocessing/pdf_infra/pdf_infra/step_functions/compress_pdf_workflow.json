@@ -1,0 +1,93 @@
+{
+  "Comment": "Step Functions workflow for PDF compression with timeout handling",
+  "StartAt": "CompressPDF",
+  "States": {
+    "CompressPDF": {
+      "Type": "Task",
+      "Resource": "arn:${Partition}:states:::ecs:runTask.sync",
+      "Parameters": {
+        "LaunchType": "FARGATE",
+        "Cluster": "${ECSClusterArn}",
+        "TaskDefinition": "${TaskDefinitionArn}",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "Subnets.$": "$.subnets",
+            "AssignPublicIp": "DISABLED"
+          }
+        },
+        "Overrides": {
+          "ContainerOverrides": [
+            {
+              "Name": "compress-pdf",
+              "Environment": [
+                {
+                  "Name": "INPUT_BUCKET",
+                  "Value.$": "$.input_bucket"
+                },
+                {
+                  "Name": "INPUT_KEY",
+                  "Value.$": "$.input_key"
+                },
+                {
+                  "Name": "OUTPUT_BUCKET",
+                  "Value.$": "$.output_bucket"
+                },
+                {
+                  "Name": "OUTPUT_KEY",
+                  "Value.$": "$.output_key"
+                },
+                {
+                  "Name": "OUTPUT_FINAL_BUCKET",
+                  "Value.$": "$.output_final_bucket"
+                },
+                {
+                  "Name": "OUTPUT_FINAL_KEY",
+                  "Value.$": "$.output_final_key"
+                },
+                {
+                  "Name": "DDB_DOCUMENTS_TABLE",
+                  "Value.$": "$.ddb_table"
+                },
+                {
+                  "Name": "DOCUMENT_ID",
+                  "Value.$": "$.document_id"
+                },
+                {
+                  "Name": "DOCUMENT_NAME",
+                  "Value.$": "$.document_name"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.TaskFailed"
+          ],
+          "IntervalSeconds": 60,
+          "MaxAttempts": 2,
+          "BackoffRate": 2.0
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "CompressionFailed"
+        }
+      ],
+      "Next": "CompressionSucceeded"
+    },
+    "CompressionSucceeded": {
+      "Type": "Succeed"
+    },
+    "CompressionFailed": {
+      "Type": "Fail",
+      "Error": "CompressionError",
+      "Cause": "PDF compression task failed after retries"
+    }
+  }
+}

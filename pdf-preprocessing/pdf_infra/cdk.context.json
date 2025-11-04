@@ -1,0 +1,34 @@
+{
+  "vpc-provider:account=005444746089:filter.vpc-id=vpc-0dde7027fb8c1c2d5:region=us-gov-east-1:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-0dde7027fb8c1c2d5",
+    "vpcCidrBlock": "10.27.244.0/24",
+    "ownerAccountId": "005444746089",
+    "availabilityZones": [],
+    "subnetGroups": [
+      {
+        "name": "Private",
+        "type": "Private",
+        "subnets": [
+          {
+            "subnetId": "subnet-0b240a7f2a05759b6",
+            "cidr": "10.27.244.128/26",
+            "availabilityZone": "us-gov-east-1a",
+            "routeTableId": "rtb-029542e28d282f98c"
+          },
+          {
+            "subnetId": "subnet-05a62c6ee1bc6324c",
+            "cidr": "10.27.244.0/26",
+            "availabilityZone": "us-gov-east-1b",
+            "routeTableId": "rtb-029542e28d282f98c"
+          },
+          {
+            "subnetId": "subnet-0e3af4b8695eefec4",
+            "cidr": "10.27.244.64/26",
+            "availabilityZone": "us-gov-east-1c",
+            "routeTableId": "rtb-029542e28d282f98c"
+          }
+        ]
+      }
+    ]
+  }
+}

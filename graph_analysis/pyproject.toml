@@ -1,0 +1,54 @@
+[project]
+name = "cognee-pdf-analysis"
+version = "0.1.0"
+description = "PDF analysis using Cognee with AWS Bedrock via LiteLLM"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # Core dependencies
+    "cognee[baml]>=0.3.6",
+    "litellm>=1.78.3",
+    "openai>=1.109.1",
+    # AWS dependencies
+    "boto3>=1.28.57",
+    # LiteLLM Proxy dependencies
+    "backoff>=2.2.1",
+    "orjson>=3.11.3",
+    "prisma>=0.15.0",
+    "apscheduler>=3.11.0",
+    "python-multipart>=0.0.20",
+    "nodeenv>=1.9.1",
+    "tzlocal>=5.3.1",
+    "tomlkit>=0.13.3",
+    "fastapi-sso>=0.18.0",
+    "oauthlib>=3.3.1",
+    "uvloop>=0.22.1",
+    # Web server dependencies
+    "uvicorn>=0.34.0",
+    "fastapi>=0.115.0",
+    "gunicorn>=23.0.0",
+    # Utility dependencies
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.0",
+    "rich>=13.7.0",
+    # Web UI
+    "streamlit>=1.40.0",
+    # PDF rendering
+    "pdf2image>=1.17.0",
+    "pillow>=10.0.0",
+    # PDF text extraction
+    "pypdf2>=3.0.0",
+    "nest-asyncio>=1.6.0",
+    "requests>=2.32.5",
+    # PostgreSQL dependencies (for cognee[postgres-binary])
+    "psycopg2-binary>=2.9.11",
+    "asyncpg>=0.30.0",
+    "pgvector>=0.3.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]

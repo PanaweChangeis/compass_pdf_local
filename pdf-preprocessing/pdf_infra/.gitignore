@@ -1,0 +1,27 @@
+# CDK
+cdk.out
+
+# Environment variables
+.env
+
+# Sensitive data
+*.pem
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyc.so
+*.egg-info/
+dist/
+build/
+*.egg
+*.py[co]
+*.so
+*.dylib
+*.test
+*.spec
+.pytest_cache/
+.ipynb_checkpoints/
+*.ipynb
