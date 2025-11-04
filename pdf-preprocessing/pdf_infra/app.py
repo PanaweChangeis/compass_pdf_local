@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import os
 import aws_cdk as cdk
-#from aws_cdk import App, Environment
 from pdf_infra.pdf_preprocess_stack import PdfPreprocessStack
 
 # user parameters
