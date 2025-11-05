@@ -17,8 +17,8 @@ app = App()
 
 # Define environment once
 aws_env = Environment(
-    account=os.getenv("CDK_DEFAULT_ACCOUNT"),
-    region=os.getenv("CDK_DEFAULT_REGION")
+    account=os.getenv("655276615738"),
+    region=os.getenv("us-east-1")
 )
 
 # Get environment configuration from context
