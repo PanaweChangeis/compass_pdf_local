@@ -17,8 +17,8 @@ app = cdk.App()
 
 # Define environment once
 aws_env = cdk.Environment(
-    account=os.getenv('CDK_DEFAULT_ACCOUNT', '005444746089'),
-    region=os.getenv('CDK_DEFAULT_REGION', 'us-gov-east-1')
+    account=os.environ["CDK_DEFAULT_ACCOUNT"],
+    region=os.environ["CDK_DEFAULT_REGION"]
 )
 
 # Get environment configuration from context
