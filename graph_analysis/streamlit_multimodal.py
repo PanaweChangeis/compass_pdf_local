@@ -24,7 +24,7 @@ load_dotenv()
 
 # Import cognee lazily inside functions to allow model switching
 from document_lookup import DocumentLookup
-from textract_loader_v2 import load_document_pages_for_cognee
+from textract_loader import load_document_pages_for_cognee
 from aws_config import get_aws_config_from_env, AWSConfigDiscovery
 from rich.console import Console
 
